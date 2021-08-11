@@ -1,0 +1,22 @@
+  <div class="add-to-cart-ajax-test">
+              <a href="{{product.handle}}" vari_id="{{variant.id}}" class="action_button add-to-cart-button">Add To cart</a>
+            </div>  
+
+
+$(document).on('click','.add-to-cart-button',function(e){
+  e.preventDefault();
+  var vari_id = $(this).attr('vari_id');
+  $.ajax({
+    type: 'POST',
+    url: '/cart/add.js',
+    data: {
+      quantity: 1,
+      id: vari_id
+    },
+    dataType: 'json', 
+    success: function (data) { 
+      console.log(data.quantity);
+setTimeout(function(){ location.reload(); }, 3000);
+    } 
+  });
+});
